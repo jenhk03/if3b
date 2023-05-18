@@ -13,9 +13,11 @@ app.use(bodyParser.json())
 
 // (7) import routes mhs, dll
 const mahasiswaRoutes = require('./routes/mahasiswa')
+const authRoutes = require('./routes/auth')
 
 // (8) apply to mahasiswaRoutes
 app.use('/mahasiswa', mahasiswaRoutes)
+app.use('/auth', authRoutes)
 
 // (3) connect to mongoodb
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser : true, useUnifiedTopology: true})

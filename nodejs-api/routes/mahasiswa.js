@@ -3,6 +3,17 @@ const express = require('express')
 const { deleteOne } = require('../models/mahasiswa')
 const router = express.Router()
 const Mahasiswa = require('../models/mahasiswa')
+const verifyToken = require('../config/verifyToken')
+
+// Read
+router.get('/', verifyToken, async(req, res) => {
+    try {
+        const mahasiswa = await Mahasiswa.find()
+        res.json(mahasiswa)
+    } catch (error) {
+        res.json({message: error})
+    }
+})
 
 // Create Data Mhs
 router.post('/', async(req, res) => {
